@@ -33,8 +33,7 @@ import scala.lms.common._
 import scala.language.higherKinds
 import scala.lms.internal.CCodegen
 
-trait IntrinsicsBase extends EffectExp {
-
+trait IntrinsicsBaseOps extends Base {
   abstract class __m64
   abstract class __m128
   abstract class __m128d
@@ -62,6 +61,21 @@ trait IntrinsicsBase extends EffectExp {
   implicit def uLongTyp   : Typ[ULong]
   implicit def anyTyp     : Typ[Any]
 
+  implicit def __m64Typ   : Typ[__m64]
+  implicit def __m128Typ  : Typ[__m128]
+  implicit def __m128dTyp : Typ[__m128d]
+  implicit def __m128iTyp : Typ[__m128i]
+  implicit def __m256Typ  : Typ[__m256]
+  implicit def __m256dTyp : Typ[__m256d]
+  implicit def __m256iTyp : Typ[__m256i]
+  implicit def __m512Typ  : Typ[__m512]
+  implicit def __m512dTyp : Typ[__m512d]
+  implicit def __m512iTyp : Typ[__m512i]
+  implicit def voidPointerTyp: Typ[VoidPointer]
+  implicit def doubleVoidPointerTyp: Typ[DoubleVoidPointer]
+}
+
+trait IntrinsicsBase extends EffectExp with IntrinsicsBaseOps{
   implicit def __m64Typ   : Typ[__m64]     = manifestTyp
   implicit def __m128Typ  : Typ[__m128]    = manifestTyp
   implicit def __m128dTyp : Typ[__m128d]   = manifestTyp
